@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Dotnet_Core_Web_API.Data;
+using Dotnet_Core_Web_API.Services.CharacterService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +35,8 @@ namespace Dotnet_Core_Web_API
             string connectionString = config.ConnectionStrings.DefaultConnection;
             services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<ICharacterService, CharacterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
