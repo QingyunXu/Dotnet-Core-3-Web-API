@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Dotnet_Core_Web_API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace Dotnet_Core_Web_API
 {
@@ -25,6 +29,9 @@ namespace Dotnet_Core_Web_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            dynamic config = JObject.Parse(File.ReadAllText("myConfig.json"));
+            string connectionString = config.ConnectionStrings.DefaultConnection;
+            services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString));
             services.AddControllers();
         }
 
