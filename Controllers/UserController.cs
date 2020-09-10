@@ -17,7 +17,7 @@ namespace Dotnet_Core_Web_API.Controllers
             this._authRepository = authRepository;
         }
 
-        [HttpPost("Regisger")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDto registerUser)
         {
             ServiceResponse<int> response = await this._authRepository.Register(registerUser);

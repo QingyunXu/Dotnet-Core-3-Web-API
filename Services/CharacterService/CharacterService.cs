@@ -49,10 +49,10 @@ namespace Dotnet_Core_Web_API.Services.CharacterService
             return response;
         }
 
-        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters(int userId)
         {
             ServiceResponse<List<GetCharacterDto>> response = new ServiceResponse<List<GetCharacterDto>>();
-            List<Character> characters = await this._context.Characters.ToListAsync();
+            List<Character> characters = await this._context.Characters.Where(c => c.User.Id == userId).ToListAsync();
             response.Data = characters.Select(c => this._mapper.Map<GetCharacterDto>(c)).ToList();
             return response;
         }
