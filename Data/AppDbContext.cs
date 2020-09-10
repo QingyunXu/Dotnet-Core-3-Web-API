@@ -8,5 +8,6 @@ namespace Dotnet_Core_Web_API.Data
         public AppDbContext(DbContextOptions<AppDbContext> option) : base(option) { }
 
         public DbSet<Character> Characters { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

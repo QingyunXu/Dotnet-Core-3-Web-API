@@ -32,3 +32,13 @@ dotnet ef database update
 ```
 dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
 ```
+
+### Authentication
+
+- Packages
+
+```
+dotnet add package Microsoft.IdentityModel.Tokens
+dotnet add package System.IdentityModel.Tokens.Jwt
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+```
