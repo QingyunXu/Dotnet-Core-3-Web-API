@@ -25,8 +25,7 @@ namespace Dotnet_Core_Web_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCharacters()
         {
-            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
-            ServiceResponse<List<GetCharacterDto>> response = await this._characterService.GetAllCharacters(userId);
+            ServiceResponse<List<GetCharacterDto>> response = await this._characterService.GetAllCharacters();
             return Ok(response);
         }
 
