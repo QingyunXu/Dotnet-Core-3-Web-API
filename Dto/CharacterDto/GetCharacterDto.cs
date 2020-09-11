@@ -16,5 +16,8 @@ namespace Dotnet_Core_Web_API.Dto.CharacterDto
         public RpgClass Class { get; set; }
         public GetWeaponDto Weapon { get; set; }
         public List<GetSkillDto> Skills { get; set; }
+        public int Fights { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
     }
 }

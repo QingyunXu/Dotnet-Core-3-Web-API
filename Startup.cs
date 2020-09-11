@@ -9,6 +9,7 @@ using Dotnet_Core_Web_API.Data;
 using Dotnet_Core_Web_API.Services.Auth;
 using Dotnet_Core_Web_API.Services.CharacterService;
 using Dotnet_Core_Web_API.Services.CharacterSkillService;
+using Dotnet_Core_Web_API.Services.FightService;
 using Dotnet_Core_Web_API.Services.WeaponService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -48,6 +49,7 @@ namespace Dotnet_Core_Web_API
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IWeaponService, WeaponService>();
             services.AddScoped<ICharacterSkillService, CharacterSkillService>();
+            services.AddScoped<IFightService, FightService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
