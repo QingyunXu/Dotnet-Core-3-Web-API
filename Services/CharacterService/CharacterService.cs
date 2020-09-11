@@ -77,7 +77,11 @@ namespace Dotnet_Core_Web_API.Services.CharacterService
         public async Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id)
         {
             ServiceResponse<GetCharacterDto> response = new ServiceResponse<GetCharacterDto>();
-            Character character = await this._context.Characters.FirstOrDefaultAsync(c => c.Id == id && c.User.Id == this.GetUserId());
+            Character character = await this._context.Characters
+                                    .Include(c => c.Weapon)
+                                    .Include(c => c.CharacterSkills)
+                                    .ThenInclude(cs => cs.Skill)
+                                    .FirstOrDefaultAsync(c => c.Id == id && c.User.Id == this.GetUserId());
             response.Data = this._mapper.Map<GetCharacterDto>(character);
             return response;
         }

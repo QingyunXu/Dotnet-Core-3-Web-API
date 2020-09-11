@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Dotnet_Core_Web_API.Dto.WeaponDto;
 
 namespace Dotnet_Core_Web_API.Models
@@ -13,5 +14,6 @@ namespace Dotnet_Core_Web_API.Models
         public RpgClass Class { get; set; } = RpgClass.Knight;
         public User User { get; set; }
         public Weapon Weapon { get; set; }
+        public List<CharacterSkill> CharacterSkills { get; set; }
     }
 }
