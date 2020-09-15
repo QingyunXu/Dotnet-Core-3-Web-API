@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dotnet_Core_Web_API.Dto.FightDto;
 using Dotnet_Core_Web_API.Services;
@@ -20,6 +21,33 @@ namespace Dotnet_Core_Web_API.Controllers
         public async Task<IActionResult> WeaponAttack(WeaponAttackDto weaponAttack)
         {
             ServiceResponse<AttackResultDto> response = await this._fightService.WeaponAttack(weaponAttack);
+            if (!response.Success)
+                return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpPost("SkillAttack")]
+        public async Task<IActionResult> SkillAttack(SkillAttackDto skillAttack)
+        {
+            ServiceResponse<AttackResultDto> response = await this._fightService.SkillAttack(skillAttack);
+            if (!response.Success)
+                return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Fight(FightRequestDto fightRequest)
+        {
+            ServiceResponse<FightResultDto> response = await this._fightService.Fight(fightRequest);
+            if (!response.Success)
+                return BadRequest(response);
+            return Ok(response);
+        }
+
+        [HttpGet("GetHighScore")]
+        public async Task<IActionResult> GetHighScore()
+        {
+            ServiceResponse<List<HighScoreDto>> response = await this._fightService.GetHighScore();
             if (!response.Success)
                 return BadRequest(response);
             return Ok(response);
