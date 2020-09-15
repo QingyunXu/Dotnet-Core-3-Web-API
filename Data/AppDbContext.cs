@@ -16,6 +16,7 @@ namespace Dotnet_Core_Web_API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CharacterSkill>().HasKey(sc => new { sc.CharacterId, sc.SkillId });
+            modelBuilder.Entity<User>().Property(user=>user.Role).HasDefaultValue("Player");
         }
     }
 }

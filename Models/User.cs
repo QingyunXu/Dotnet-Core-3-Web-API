@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dotnet_Core_Web_API.Models
 {
@@ -9,5 +10,7 @@ namespace Dotnet_Core_Web_API.Models
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public List<Character> characters { get; set; }
+        [Required]
+        public string Role { get; set; } 
     }
 }
